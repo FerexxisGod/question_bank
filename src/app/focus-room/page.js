@@ -188,9 +188,20 @@ export default function FocusRoom() {
             <label>Question Name</label>
             <input required autoFocus type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="What are you working on?" />
           </div>
-          <div className={styles.formGroup}>
-            <label>Topic</label>
-            <TopicInput value={formData.topic} onChange={(val) => setFormData({...formData, topic: val})} />
+          <div style={{display: 'flex', gap: '1rem'}}>
+            <div className={styles.formGroup} style={{flex: 2}}>
+              <label>Topic</label>
+              <TopicInput value={formData.topic} onChange={(val) => setFormData({...formData, topic: val})} />
+            </div>
+            <div className={styles.formGroup} style={{flex: 1}}>
+              <label>Difficulty</label>
+              <select value={formData.difficulty} onChange={e => setFormData({...formData, difficulty: e.target.value})}>
+                 <option value="JEE Mains">JEE Mains</option>
+                 <option value="JEE Advance">JEE Advance</option>
+                 <option value="EX1">EX1</option>
+                 <option value="EX2">EX2</option>
+              </select>
+            </div>
           </div>
           <div className={styles.formGroup}>
             <label>Summary / Goal</label>
