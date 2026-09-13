@@ -39,8 +39,8 @@ export default function QuestionDetail({ params }) {
         if (data.solutionImage) setSolutionImage(data.solutionImage);
         
         if (data.aiSolutionLocalPath) {
-           const mdRes = await fetch(data.aiSolutionLocalPath);
-           const mdText = await mdRes.text();
+           const mdText = data.aiSolutionLocalPath;
+           // fetched instantly from DB string
            setSavedAiSolution(mdText);
         }
       } catch(e) {
@@ -68,7 +68,7 @@ export default function QuestionDetail({ params }) {
         if(res.ok) {
            const finalObj = await res.json();
            setSolutionImage(finalObj.solutionImage); 
-           setUploadStatus('Solution firmly saved to local project folder!');
+           setUploadStatus('Solution firmly encoded and saved to Database!');
         } else {
            setUploadStatus('Failed to save.');
         }
@@ -80,7 +80,7 @@ export default function QuestionDetail({ params }) {
   };
 
   const handleRemoveImage = async () => {
-    if (!window.confirm("Are you sure you want to delete this locally saved solution image?")) return;
+    if (!window.confirm("Are you sure you want to delete this securely saved solution image?")) return;
     setUploadStatus("Removing image...");
     try {
       const res = await fetch(`/api/questions/${id}`, {
@@ -90,7 +90,7 @@ export default function QuestionDetail({ params }) {
       });
       if (res.ok) {
          setSolutionImage(null);
-         setUploadStatus("Image successfully removed from database and your filesystem!");
+         setUploadStatus("Image successfully erased from the database!");
       } else {
          setUploadStatus("Failed to remove image.");
       }
@@ -140,7 +140,7 @@ export default function QuestionDetail({ params }) {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to permanently delete this question? This will wipe the MongoDB record and destroy your locally saved solution files associated with it.")) return;
+    if (!window.confirm("Are you sure you want to permanently delete this question? This will wipe the MongoDB record and destroy your saved solution associated with it.")) return;
     try {
       const res = await fetch(`/api/questions/${id}`, { method: 'DELETE' });
       if (res.ok) router.push('/'); 
@@ -190,7 +190,7 @@ export default function QuestionDetail({ params }) {
       <div className={styles.card}>
         <h2 className={styles.sectionTitle}>My Embedded Solution</h2>
         <p style={{color: '#666', marginBottom: '1rem'}}>
-           Files are saved directly to your local Webstorm project folder to save MongoDB space.
+           Files are saved directly into your MongoDB cluster securely as Base64 strings.
         </p>
         
         {solutionImage ? (
@@ -269,7 +269,7 @@ export default function QuestionDetail({ params }) {
                  </Markdown>
                 <div style={{marginTop: '2rem'}}>
                   <button onClick={saveAiSolutionLocal} className={styles.saveAiBtn}>
-                    {savingText ? 'Saving...' : '💾 Locally Save Output'}
+                    {savingText ? 'Saving...' : '💾 Save Output to Database'}
                   </button>
                 </div>
               </div>
