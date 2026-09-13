@@ -43,7 +43,7 @@ export default function Header() {
         )}
         
         {/* NEW ACCOUNT BADGE */}
-        <div className={styles.accountBadge}>
+        <div className={styles.accountBadge} onClick={() => window.dispatchEvent(new Event('openKeyVault'))} title="Manage API Keys">
            <div className={styles.accountAvatar}>A</div>
         </div>
       </div>
