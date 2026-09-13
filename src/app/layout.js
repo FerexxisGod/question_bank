@@ -27,8 +27,8 @@ export default function RootLayout({ children }) {
                   }
                   
                   // SECURE KEY INJECTION - Applies payload instantly before React mounts!
-                  var m = sessionStorage.getItem('custom_mongo');
-                  var g = sessionStorage.getItem('custom_gemini');
+                  var m = localStorage.getItem('custom_mongo');
+                  var g = localStorage.getItem('custom_gemini');
                   if (m && g) {
                      var originalFetch = window.fetch;
                      window.fetch = async function(...args) {

@@ -9,8 +9,8 @@ export default function KeyVault() {
 
   useEffect(() => {
     setMounted(true);
-    const m = sessionStorage.getItem('custom_mongo');
-    const g = sessionStorage.getItem('custom_gemini');
+    const m = localStorage.getItem('custom_mongo');
+    const g = localStorage.getItem('custom_gemini');
     
     if (!m || !g) {
       setHasKeys(false);
@@ -20,8 +20,8 @@ export default function KeyVault() {
   const handleSave = (e) => {
     e.preventDefault();
     if (!mongoUri || !geminiKey) return;
-    sessionStorage.setItem('custom_mongo', mongoUri);
-    sessionStorage.setItem('custom_gemini', geminiKey);
+    localStorage.setItem('custom_mongo', mongoUri);
+    localStorage.setItem('custom_gemini', geminiKey);
     // Hard refresh ensures the deeply injected script in layout.js 
     // runs synchronously and patches window.fetch properly on load
     window.location.reload(); 
