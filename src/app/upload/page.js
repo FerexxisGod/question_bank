@@ -45,7 +45,7 @@ export default function UploadModes() {
 function SingleUpload() {
   const router = useRouter();
   const [status, setStatus] = useState(null);
-  const [formData, setFormData] = useState({ name: '', topic: '', difficulty: 'JEE Mains', time: '', summary: '', attempts: '1' });
+  const [formData, setFormData] = useState({ name: '', topic: '', difficulty: masterDifficulty, time: '', summary: '', attempts: '1' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,6 +112,7 @@ function BulkUpload() {
   const router = useRouter();
   const [status, setStatus] = useState(null);
   const [topic, setTopic] = useState('');
+  const [masterDifficulty, setMasterDifficulty] = useState('JEE Mains');
   const [customPrompt, setCustomPrompt] = useState('');
   const [images, setImages] = useState([]);
   const [generatedQuestions, setGeneratedQuestions] = useState([]);
@@ -130,7 +131,7 @@ function BulkUpload() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to generate');
       
-      const mappedQuestions = data.map(q => ({ topic: topic, difficulty: 'JEE Mains', name: q.name || '', summary: q.summary || '', time: '', attempts: '1' }));
+      const mappedQuestions = data.map(q => ({ topic: topic, difficulty: masterDifficulty, name: q.name || '', summary: q.summary || '', time: '', attempts: '1' }));
       setGeneratedQuestions(mappedQuestions);
       setStatus(null);
     } catch (err) { setStatus('Error calling Gemini: ' + err.message); }
@@ -158,9 +159,20 @@ function BulkUpload() {
       {status && <div className={status.includes('Error') ? styles.error : styles.success}>{status}</div>}
       {generatedQuestions.length === 0 ? (
         <>
-          <div className={styles.formGroup}>
-            <label>Master Topic (Applied to all images)</label>
-            <TopicInput value={topic} onChange={(val) => setTopic(val)} />
+          <div style={{display:'flex', gap:'1rem'}}>
+            <div className={styles.formGroup} style={{flex: 2}}>
+              <label>Master Topic (Applied to all images)</label>
+              <TopicInput value={topic} onChange={(val) => setTopic(val)} />
+            </div>
+            <div className={styles.formGroup} style={{flex: 1}}>
+              <label>Master Difficulty</label>
+              <select value={masterDifficulty} onChange={e => setMasterDifficulty(e.target.value)}>
+                 <option value="JEE Mains">JEE Mains</option>
+                 <option value="JEE Advance">JEE Advance</option>
+                 <option value="EX1">EX1</option>
+                 <option value="EX2">EX2</option>
+              </select>
+            </div>
           </div>
           <div className={styles.formGroup}>
             <label>Custom Gemini Prompt (Optional)</label>
