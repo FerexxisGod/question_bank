@@ -1,0 +1,322 @@
+/* By making this position:fixed and z-index:9999, we completely paint over the Navigation Bar & Footer, leaving zero distractions. */
+.zenMode {
+  position: fixed;
+  inset: 0;
+  background-color: #fdfdfd;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+:global([data-theme='dark']) .zenMode {
+  background-color: #000;
+  color: #fff;
+}
+
+/* SESSION TIMER IN TOP RIGHT */
+.sessionTimer {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-family: 'SFMono-Regular', Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #aaa;
+  letter-spacing: 2px;
+}
+
+:global([data-theme='dark']) .sessionTimer {
+  color: #555;
+}
+
+.sessionLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  display: block;
+  text-align: right;
+  margin-bottom: -5px;
+}
+
+/* EXIT BUTTON */
+.exitBtn {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-weight: bold;
+}
+.exitBtn:hover { color: #ff0080; }
+
+/* SETUP PHASE BOX */
+.setupContainer {
+  width: 100%;
+  max-width: 650px;
+  background: #fff;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  border: 1px solid #eaeaea;
+}
+
+:global([data-theme='dark']) .setupContainer {
+  background: #111;
+  border-color: #222;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff0080, #7928ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  font-weight: bold;
+  color: #555;
+}
+
+:global([data-theme='dark']) .formGroup label { color: #aaa; }
+
+.formGroup input, .formGroup textarea {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid #eaeaea;
+  background: #fafafa;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+:global([data-theme='dark']) .formGroup input, :global([data-theme='dark']) .formGroup textarea {
+  background: #0a0a0a;
+  border-color: #333;
+  color: #fff;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  border-color: #7928ca;
+}
+
+.startBtn {
+  width: 100%;
+  padding: 1.2rem;
+  background: #111;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.startBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+:global([data-theme='dark']) .startBtn { background: #333; }
+:global([data-theme='dark']) .startBtn:hover { background: #444; }
+
+/* RUNNING PHASE TIMER */
+.hugeTimer {
+  font-family: 'SFMono-Regular', Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12vw;
+  font-weight: 800;
+  color: #111;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  margin: 0;
+  line-height: 1;
+}
+
+:global([data-theme='dark']) .hugeTimer {
+  color: #fff;
+  text-shadow: 0 10px 40px rgba(255,255,255,0.05);
+}
+
+.timerHint {
+  font-size: 1.5rem;
+  color: #888;
+  margin-top: 2rem;
+  font-weight: 600;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* SAVED STATE */
+.savedMsg {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #10b981; /* green */
+}
+.savedSub {
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 1rem;
+}
+
+/* Autocomplete Specific Styles (Inherited from Upload module) */
+.topicInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.autocompleteDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+:global([data-theme='dark']) .autocompleteDropdown {
+  background: #111;
+  border-color: #333;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.autocompleteDropdown li {
+  padding: 0.9rem;
+  cursor: pointer;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 1.05rem;
+  transition: all 0.1s;
+}
+
+.autocompleteDropdown li:last-child {
+  border-bottom: none;
+}
+
+:global([data-theme='dark']) .autocompleteDropdown li {
+  color: #eee;
+  border-bottom-color: #333;
+}
+
+.autocompleteDropdown li:hover {
+  background: rgba(121, 40, 202, 0.08);
+  color: #7928ca;
+}
+
+:global([data-theme='dark']) .autocompleteDropdown li:hover {
+  background: rgba(121, 40, 202, 0.3);
+  color: #d88aff;
+}
+
+/* END PHASE ACTIONS */
+.actionRow {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.uploadChoiceBtn {
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #ff0080, #7928ca);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(121, 40, 202, 0.4);
+}
+
+.uploadChoiceBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(121, 40, 202, 0.6);
+}
+
+.skipBtn {
+  padding: 1rem 2rem;
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.skipBtn:hover {
+  background: #e0e0e0;
+}
+
+:global([data-theme='dark']) .skipBtn {
+  background: #222;
+  color: #eee;
+}
+
+:global([data-theme='dark']) .skipBtn:hover {
+  background: #333;
+}
+
+.attemptsBox {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 2rem;
+  border: 1px solid #eaeaea;
+  animation: popIn 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+}
+:global([data-theme='dark']) .attemptsBox { background: #111; border-color: #333; }
+.attemptsBox label { font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; display: block; color: inherit; }
+.attemptsInput { width: 100px; font-size: 2.5rem; text-align: center; padding: 0.5rem; border: 2px solid #eaeaea; border-radius: 12px; font-weight: bold; margin-bottom: 1.5rem; outline: none; transition: 0.2s; display: block; margin-left: auto; margin-right: auto;}
+.attemptsInput:focus { border-color: #7928ca; box-shadow: 0 0 10px rgba(121,40,202,0.2) }
+:global([data-theme='dark']) .attemptsInput { background: #000; color: #fff; border-color: #444; }
+@keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.formGroup select {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid #eaeaea;
+  background: #fafafa;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+:global([data-theme='dark']) .formGroup select {
+  background: #0a0a0a;
+  border-color: #333;
+  color: #fff;
+}
+.formGroup select:focus {
+  border-color: #7928ca;
+}

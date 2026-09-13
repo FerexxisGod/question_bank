@@ -1,0 +1,146 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.nav a {
+  color: #0070f3;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+:global([data-theme='dark']) .nav { 
+  border-bottom-color: #333; 
+}
+:global([data-theme='dark']) .nav a {
+  color: #3291ff;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: radial-gradient(circle at top, rgba(121,40,202,0.05), transparent 60%);
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #ff0080, #7928ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+:global([data-theme='dark']) .subtitle {
+  color: #aaa;
+}
+
+.error {
+  color: #cc0000;
+  background: #ffeded;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid #ffcccc;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 550px;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+:global([data-theme='dark']) .form {
+  background: #111;
+  border-color: #333;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.formGroup label {
+  font-weight: 700;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+:global([data-theme='dark']) .formGroup label { 
+  color: #ddd; 
+}
+
+.formGroup input, .formGroup textarea {
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  border: 2px solid #eaeaea;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: #fafafa;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  border-color: #7928ca;
+}
+
+:global([data-theme='dark']) .formGroup input, 
+:global([data-theme='dark']) .formGroup textarea {
+  background: #050505;
+  border-color: #333;
+  color: #fff;
+}
+:global([data-theme='dark']) .formGroup input:focus, 
+:global([data-theme='dark']) .formGroup textarea:focus {
+  border-color: #7928ca;
+}
+
+.submitBtn {
+  background: linear-gradient(90deg, #ff0080, #7928ca);
+  color: white;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
