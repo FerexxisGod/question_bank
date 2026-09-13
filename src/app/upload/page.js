@@ -45,7 +45,7 @@ export default function UploadModes() {
 function SingleUpload() {
   const router = useRouter();
   const [status, setStatus] = useState(null);
-  const [formData, setFormData] = useState({ name: '', topic: '', difficulty: masterDifficulty, time: '', summary: '', attempts: '1' });
+  const [formData, setFormData] = useState({ name: '', topic: '', difficulty: 'JEE Mains', time: '', summary: '', attempts: '1' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
